@@ -1,22 +1,27 @@
 import type { Metadata } from 'next'
-import localFont from "next/font/local";
-import { Roboto } from "next/font/google";
+import LocalFont from "next/font/local";
+import { Roboto, Satisfy } from "next/font/google";
 import "./globals.css";
 import { FC, ReactNode } from "react";
+import ThemeProvider from "./providers/ThemeProvider";
 
+//   different font family for our application
 export const robotoFont = Roboto({
   subsets: ["cyrillic", "cyrillic-ext"],
   weight: "400",
 });
 
-export const regularFont = localFont({
-  // src: './my-font.woff2',
+export const satisfyFont = Satisfy({
+  weight: ["400"],
+  subsets: ["latin"],
+});
+
+export const regularFont = LocalFont({
   display: "swap",
   src: "./assets/Fonts/TwCenClassMTStd-Regular.otf",
 });
 
-export const boldFont = localFont({
-  // src: './my-font.woff2',
+export const boldFont = LocalFont({
   display: "swap",
   src: "./assets/Fonts/TwCenMTStd-Bold.otf",
 });
@@ -33,7 +38,16 @@ export const metadata: Metadata = {
 const RootLayout: FC<RootLayoutProps> = ({ children }): JSX.Element => {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={regularFont.className}>{children}</body>
+      <body className={regularFont.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 };
