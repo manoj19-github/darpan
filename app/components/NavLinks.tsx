@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, Fragment } from "react";
-import { AppNavLinks } from "../appConfig";
+import { AppNavLinks } from "../config/appConfig";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";

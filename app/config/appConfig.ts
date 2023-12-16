@@ -8,7 +8,7 @@ import {
   PlusSquare,
   Search,
 } from "lucide-react";
-import { AppConfigInterface } from "./interfaces/appConfig.interface";
+import { AppConfigInterface } from "../interfaces/appConfig.interface";
 
 export const AppNavLinks: AppConfigInterface[] = [
   {
