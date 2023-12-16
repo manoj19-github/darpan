@@ -38,6 +38,7 @@ const MoreDropdown: FC<MoreDropdownProps> = (): JSX.Element => {
       !dropdownRef.current.contains(event.target as Node)
     ) {
       setOpenMenu(false);
+      setShowModeToggle(false);
     }
   };
   useEffect(() => {
