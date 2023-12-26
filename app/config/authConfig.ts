@@ -3,6 +3,7 @@ import prisma from "./PrismaConfig";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialProvider from "next-auth/providers/credentials";
 import NextAuth, { getServerSession, type NextAuthOptions } from "next-auth";
+import bcrypt from "bcrypt";
 import {
   GetServerSidePropsContext,
   NextApiRequest,
@@ -33,9 +34,13 @@ export const config = {
             email: credentials.email,
           },
         });
-        // if (!user || !user?.password) throw new Error(`Invalid Credentials`);
-        // if (user.password !== credentials.password)
-        //   throw new Error(`Invalid credentials`);
+        if (!user || !user?.hashedPassword)
+          throw new Error(`Invalid Credentials`);
+        const isCorrectPassword = await bcrypt.compare(
+          credentials.password,
+          user.hashedPassword
+        );
+        if (!isCorrectPassword) throw new Error(`Invalid credentials`);
         return user;
       },
     }),
@@ -95,4 +100,4 @@ export function auth(
   return getServerSession(...args, config);
 }
 
-export default NextAuth(config);
+// export default NextAuth(config);

@@ -4,6 +4,7 @@ import { Roboto, Satisfy } from "next/font/google";
 import "./globals.css";
 import { FC, ReactNode } from "react";
 import ThemeProvider from "./providers/ThemeProvider";
+import ToasterProvider from "./providers/ToasterProvider";
 
 //   different font family for our application
 export const robotoFont = Roboto({
@@ -39,6 +40,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }): JSX.Element => {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={regularFont.className}>
+        <ToasterProvider />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

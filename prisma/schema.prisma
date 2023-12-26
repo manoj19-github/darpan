@@ -55,6 +55,7 @@ model User {
     username      String?     @unique
     bio           String?
     website       String?
+    hashedPassword      String?
     gender        String?
     email         String?     @unique
     emailVerified DateTime?

@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useSession, signIn, signOut } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -95,7 +96,7 @@ const MoreDropdown: FC<MoreDropdownProps> = (): JSX.Element => {
               <p className="!cursor-pointer">Switch appearance</p>
             </DropdownMenuItem>
 
-            <DropdownMenuItem className="menuItem" onClick={() => {}}>
+            <DropdownMenuItem className="menuItem" onClick={() => signOut()}>
               <LogOut size={20} />
               <p>Log out</p>
             </DropdownMenuItem>
