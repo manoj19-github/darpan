@@ -14,6 +14,7 @@ export const config = {
     signIn: "/login",
   },
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET!,
   providers: [
     GoogleProvider({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
@@ -50,9 +51,12 @@ export const config = {
   },
   callbacks: {
     async session({ session, token }) {
+      
+      
       if (!!token) {
         session.user.id = token.id;
         session.user.name = token.name ? token.name : "unknown";
+        session.user.email = token.email;
         session.user.image = token?.picture
           ? token.picture
           : "https://img.favpng.com/25/13/19/samsung-galaxy-a8-a8-user-login-telephone-avatar-png-favpng-dqKEPfX7hPbc6SMVUCteANKwj.jpg";
@@ -61,6 +65,8 @@ export const config = {
       return session;
     },
     async jwt({ token, user }) {
+      
+      
       const prismaUser = await prisma.user.findFirst({
         where: {
           email: token.email,

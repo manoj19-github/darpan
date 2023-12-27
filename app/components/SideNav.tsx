@@ -2,9 +2,15 @@ import React, { FC } from "react";
 import AppLogo from "./AppLogo";
 import NavLinks from "./NavLinks";
 import MoreDropdown from "./MoreDropdown";
+import { auth } from "../config/authConfig";
+import ProfileLinks from "./ProfileLinks";
 
 interface SideNavProps {}
-const SideNav: FC<SideNavProps> = (): JSX.Element => {
+const SideNav: FC<SideNavProps> = async (): Promise<JSX.Element> => {
+  const session = await auth();
+  console.log("session: ", session);
+  const user = session?.user;
+
   return (
     <div className="flex h-full flex-col px-2 py-2 md:px-2">
       <div
@@ -14,7 +20,7 @@ const SideNav: FC<SideNavProps> = (): JSX.Element => {
         <NavLinks />
 
         {/* only for user */}
-        {/* {!!user ? <ProfileLinks/>:<></> } */}
+        {!!user ? <ProfileLinks user={user} /> : <></>}
         <div className="hidden md:flex relative md:mt-auto  items-end w-full flex-[0.4] md:pb-2">
           <MoreDropdown />{" "}
         </div>
