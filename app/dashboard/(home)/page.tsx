@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 
-const Dashboard: FC = (): JSX.Element => {
+
+interface DashboardProps {}
+const Dashboard: FC<DashboardProps> = ({}): JSX.Element => {
   return <div>Dashboard</div>;
 };
 
