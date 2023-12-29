@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const PostSchema = z.object({
   id: z.string(),
-  fileURL: z.string().url(),
+  fileURL: z.string({ required_error: "File URL must be a valid URL" }).url(),
   caption: z.string().optional(),
 });
 

@@ -10,9 +10,11 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import useMount from "@/hooks/useMount";
 import { CreatePostSchema } from "@/lib/formSchemas";
@@ -24,6 +26,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { UploadButton } from "@/lib/uploadthing";
 interface CreatePageProps {}
 const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
   const pathname = usePathname();
@@ -38,6 +43,8 @@ const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
       fileURL: undefined,
     },
   });
+
+  const onSubmit = (values: z.infer<typeof CreatePostSchema>) => {};
   const fileURL = form.watch("fileURL");
   if (!isMount) return <></>;
   //   endpoint="serverImage"
@@ -52,7 +59,7 @@ const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
             <DialogTitle>Create New Post</DialogTitle>
           </DialogHeader>
           <Form {...form}>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
               {!!fileURL ? (
                 <div className="h-96 md:h-[450px] overflow-hidden rounded-md">
                   <AspectRatio ratio={1 / 1} className="relative h-full">
@@ -72,12 +79,57 @@ const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
                     render={({ field, fieldState }) => (
                       <FormItem>
                         <FormLabel htmlFor="picture">Picture</FormLabel>
-                        <FormControl>{/* <UploadButton */}</FormControl>
+                        <FormControl>
+                          {/* <UploadButton */}
+                          {/* <FileUpload
+                            endpoint="serverImage"
+                            value={field.value}
+                            onChange={field.onChange}
+                            isLoading={isLoading || apiLoading}
+                          /> */}
+                          <UploadButton
+                            endpoint="imageUploader"
+                            onClientUploadComplete={(res) => {
+                              form.setValue("fileURL", res[0].url);
+                              toast.success("Upload complete");
+                            }}
+                            onUploadError={(error: Error) => {
+                              console.error(error);
+                              toast.error("Upload failed");
+                            }}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
                       </FormItem>
                     )}
                   ></FormField>
                 </>
               )}
+              {!!fileURL ? (
+                <FormField
+                  control={form.control}
+                  name="caption"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel htmlFor="caption">Caption</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="caption"
+                          id="caption"
+                          placeholder="write a caption ..."
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                ></FormField>
+              ) : (
+                <></>
+              )}
+              <Button type="submit" disabled={form.formState.isSubmitting}>
+                Create Post
+              </Button>
             </form>
           </Form>
         </DialogContent>
