@@ -6,7 +6,7 @@ interface ApiLoaderProps {
   isLoading: boolean;
 }
 
-const ApiLoader: FC<ApiLoaderProps> = ({ isLoading }) => {
+const ApiLoader: FC<ApiLoaderProps> = ({ isLoading }): JSX.Element => {
   if (!isLoading) return <></>;
   return (
     <div className=" fixed h-[100vh] w-[100vw] top-0 left-0 bg-[rgba(0,0,0,0.8)] !z-[999] flex items-center justify-center">

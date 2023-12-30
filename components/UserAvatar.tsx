@@ -6,13 +6,18 @@ import Image from "next/image";
 
 type UserAvatarProps = Partial<AvatarProps> & {
   user: User | undefined;
+  isSmall?: boolean;
 };
 const UserAvatar: FC<UserAvatarProps> = ({
   user,
+  isSmall,
   ...avatarProps
 }): JSX.Element => {
   return (
-    <Avatar className=" h-12 w-12" {...avatarProps}>
+    <Avatar
+      className={` h-12 w-12 ${isSmall ? `h-8 w-8` : ""}`}
+      {...avatarProps}
+    >
       <div className="!relative w-full h-full">
         <Image
           src={

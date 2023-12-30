@@ -52,7 +52,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }): JSX.Element => {
           disableTransitionOnChange
         >
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <PageLoading isLoading={true} />
+          <PageLoading />
           {children}
         </ThemeProvider>
       </body>
