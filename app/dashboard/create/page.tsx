@@ -19,7 +19,7 @@ import {
 import useMount from "@/hooks/useMount";
 import { CreatePostSchema } from "@/lib/formSchemas";
 import { usePathname, useRouter } from "next/navigation";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
@@ -29,9 +29,12 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { UploadButton } from "@/lib/uploadthing";
+import { createPostHandler } from "@/serverActions/createPost";
+import ApiLoader from "@/app/components/ApiLoader";
 interface CreatePageProps {}
 const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
   const pathname = usePathname();
+  const [apiLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const isMount = useMount();
   const isCreatePage = pathname === "/dashboard/create";
@@ -44,7 +47,14 @@ const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof CreatePostSchema>) => {};
+  const onSubmit = async (values: z.infer<typeof CreatePostSchema>) => {
+    setIsLoading(true);
+    const res = await createPostHandler(values);
+    setIsLoading(false);
+    if (res) {
+      return toast.error(res.message);
+    }
+  };
   const fileURL = form.watch("fileURL");
   if (!isMount) return <></>;
   //   endpoint="serverImage"
@@ -54,6 +64,7 @@ const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
         open={isCreatePage}
         onOpenChange={(open) => !open && router.back()}
       >
+        <ApiLoader isLoading={apiLoading} />
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Create New Post</DialogTitle>

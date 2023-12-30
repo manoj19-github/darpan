@@ -8,6 +8,7 @@ import ToasterProvider from "./providers/ToasterProvider";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import PageLoading from "./components/PageLoading";
 
 //   different font family for our application
 export const robotoFont = Roboto({
@@ -51,6 +52,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }): JSX.Element => {
           disableTransitionOnChange
         >
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+          <PageLoading isLoading={true} />
           {children}
         </ThemeProvider>
       </body>
