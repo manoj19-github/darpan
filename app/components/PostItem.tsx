@@ -8,6 +8,7 @@ import PostOptions from "./PostOptions";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import PostActions from "./PostActions";
 
 interface PostItemProps {
   postDetails: PostWithExtras;
@@ -53,7 +54,11 @@ const PostItem: FC<PostItemProps> = async ({
         />
       </Card>
 
-      {/* <PostAction post={postDetails} userId={userId} className="px-3 sm:px-0" /> */}
+      <PostActions
+        post={postDetails}
+        userId={userId}
+        className="px-3 sm:px-0"
+      />
       {postDetails.caption ? (
         <div className="text-sm leading-none items-center space-x-2 font-medium px-3 sm:px-0">
           <p>{postDetails.caption}</p>

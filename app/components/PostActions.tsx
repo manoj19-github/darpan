@@ -3,6 +3,8 @@ import { PostWithExtras } from "../interfaces/postSection.interface";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import LikeButton from "./LikeButton";
+import { MessageCircle } from "lucide-react";
+import ActionIcon from "./ActionIcon";
 
 interface PostActionProps {
   post: PostWithExtras;
@@ -22,8 +24,8 @@ const PostActions: FC<PostActionProps> = ({
           <MessageCircle className={"h-6 w-6"} />
         </ActionIcon>
       </Link>
-      <SharedButton postId={post.id} />
-      <BookmarkButton post={post} userId={userId} />
+      {/* <SharedButton postId={post.id} />
+      <BookmarkButton post={post} userId={userId} /> */}
     </div>
   );
 };

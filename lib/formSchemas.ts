@@ -9,3 +9,6 @@ export const PostSchema = z.object({
 export const CreatePostSchema = PostSchema.omit({ id: true });
 export const UpdatePostSchema = PostSchema;
 export const DeletePostSchema = PostSchema.pick({ id: true });
+export const likePostSchema = z.object({
+  postId: z.string(),
+});

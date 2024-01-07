@@ -24,7 +24,7 @@ const LikeButton: FC<LikeButtonProps> = ({ post, userId }): JSX.Element => {
   );
   const handleLikePost = async (formData: FormData) => {
     const postId = formData.get("postId");
-    setOptimisticLikes({ postId, userIds });
+    setOptimisticLikes({ postId, userId });
     // await likePost(postId);
   };
   return (
