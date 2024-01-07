@@ -7,6 +7,8 @@ import LikeButton from "./LikeButton";
 import { MessageCircle } from "lucide-react";
 import ActionIcon from "./ActionIcon";
 import { Like } from "@prisma/client";
+import SharedButton from "./SharedButton";
+import BookmarkButton from "./BookmarkButton";
 
 interface PostActionProps {
   post: PostWithExtras;
@@ -44,8 +46,12 @@ const PostActions: FC<PostActionProps> = ({
           </ActionIcon>
         </div>
       </Link>
-      {/* <SharedButton postId={post.id} />
-      <BookmarkButton post={post} userId={userId} /> */}
+      <div className={`${optimisticLikes.length > 0 ? `pb-3` : ""}`}>
+        <SharedButton postId={post.id} />
+      </div>
+      <div className={`${optimisticLikes.length > 0 ? `pb-3` : ""}`}>
+        <BookmarkButton post={post} userId={userId} />
+      </div>
     </div>
   );
 };
