@@ -6,7 +6,7 @@ interface DashboardHomeLayoutProps {
 }
 const DashboardHomeLayout: FC<DashboardHomeLayoutProps> = ({ children }) => {
   return (
-    <div>
+    <div className="">
       <Header />
       {children}
     </div>

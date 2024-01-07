@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 const RootLayout: FC<RootLayoutProps> = ({ children }): JSX.Element => {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={regularFont.className}>
+      <body className={`${regularFont.className}  `}>
         <ToasterProvider />
         <ThemeProvider
           attribute="class"

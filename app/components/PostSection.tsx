@@ -7,7 +7,7 @@ const PostSection: FC<PostSectionProps> = async (): Promise<JSX.Element> => {
   const postResponse = await fetchPostsAction();
   console.log("postResponse: ", postResponse);
   return (
-    <div className="mt-[40px]">
+    <div className="">
       {postResponse.map((self, index) => (
         <PostItem key={self.id} postDetails={self} />
       ))}
