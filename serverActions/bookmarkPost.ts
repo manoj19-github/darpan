@@ -6,7 +6,6 @@ import { revalidatePath } from "next/cache";
 
 const bookmarkPostAction = async (value: FormDataEntryValue | null) => {
   try {
-    console.log("bookmark action : value : ", value);
     const userId = await getUserId();
     const validatedFields = bookmarkPostSchema.safeParse({ postId: value });
     if (!validatedFields.success)
@@ -33,7 +32,6 @@ const bookmarkPostAction = async (value: FormDataEntryValue | null) => {
       },
     });
     if (isAlreadyBookMarked) {
-      console.log("delete hit");
       await prisma.savedPost.delete({
         where: {
           postId_userId: {
@@ -45,7 +43,6 @@ const bookmarkPostAction = async (value: FormDataEntryValue | null) => {
       revalidatePath("/dashboard");
       return { message: "Unbookmarked post" };
     } else {
-      console.log("create hit");
       await prisma.savedPost.create({
         data: {
           postId,
@@ -56,7 +53,6 @@ const bookmarkPostAction = async (value: FormDataEntryValue | null) => {
       return { message: "Bookmarked post" };
     }
   } catch (error: any) {
-    console.log(error);
     return { message: "Failed to Bookmarked: Database error " };
   }
 };

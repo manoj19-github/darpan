@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import PostActions from "./PostActions";
+import Comments from "./Comments";
 
 interface PostItemProps {
   postDetails: PostWithExtras;
@@ -66,7 +67,11 @@ const PostItem: FC<PostItemProps> = async ({
       ) : (
         <></>
       )}
-      {/* <Comments postId={postDetails.id} comments={postDetails.comments} user={session?.user}/> */}
+      <Comments
+        postId={postDetails.id}
+        comments={postDetails.comments}
+        user={session?.user}
+      />
     </div>
   );
 };

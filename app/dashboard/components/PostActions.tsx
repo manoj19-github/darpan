@@ -25,7 +25,7 @@ const PostActions: FC<PostActionProps> = ({
   const isAlreadyBookMarked = (bookmark: SavedPost) =>
     bookmark.userId === userId && bookmark.postId === post.id;
 
-  console.log("SAVED BY : ", post);
+  
   const [optimisticLikes, setOptimisticLikes] = useOptimistic<Like[]>(
     post.likes,
     // @ts-ignore
@@ -45,12 +45,7 @@ const PostActions: FC<PostActionProps> = ({
         ? state.filter((self) => self.userId !== userId)
         : [...state, newBookmark]
   );
-  console.log(
-    "optimisticBookmarks: ",
-    optimisticBookmarks.find(isAlreadyBookMarked)
-  );
-  console.log("data optimisticBookmarks: ", optimisticBookmarks);
-  console.log({ userId });
+
   return (
     <div className={cn(`relative flex items-center w-full gap-x-2`, className)}>
       <LikeButton
@@ -70,7 +65,7 @@ const PostActions: FC<PostActionProps> = ({
       <div className={`${optimisticLikes.length > 0 ? `pb-3` : ""}`}>
         <SharedButton postId={post.id} />
       </div>
-      <div className={`${optimisticLikes.length > 0 ? `pb-3` : ""}`}>
+      <div className={`${optimisticLikes.length > 0 ? `pb-3` : ""} ml-auto`}>
         <BookmarkButton
           post={post}
           userId={userId}
