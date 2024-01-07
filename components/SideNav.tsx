@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import AppLogo from "./AppLogo";
 import NavLinks from "./NavLinks";
-import MoreDropdown from "./MoreDropdown";
-import { auth } from "../config/authConfig";
-import ProfileLinks from "./ProfileLinks";
+import MoreDropdown from "../app/dashboard/components/MoreDropdown";
+import { auth } from "../app/config/authConfig";
+import ProfileLinks from "../app/dashboard/components/ProfileLinks";
 
 interface SideNavProps {}
 const SideNav: FC<SideNavProps> = async (): Promise<JSX.Element> => {

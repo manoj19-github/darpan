@@ -2,7 +2,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import React, { FC } from "react";
 import { SwitchCamera } from "lucide-react";
-import { satisfyFont } from "../layout";
+import { satisfyFont } from "../app/layout";
 
 interface AppLogoProps {}
 const AppLogo: FC<AppLogoProps> = (): JSX.Element => {

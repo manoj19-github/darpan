@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, useOptimistic } from "react";
-import { PostWithExtras } from "../interfaces/postSection.interface";
+import { PostWithExtras } from "../../interfaces/postSection.interface";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import LikeButton from "./LikeButton";

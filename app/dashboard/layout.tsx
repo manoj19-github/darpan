@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import SideNav from "../components/SideNav";
+import SideNav from "../../components/SideNav";
 
 interface DashboardLayoutProps {
   children: ReactNode;

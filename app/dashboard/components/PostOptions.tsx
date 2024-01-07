@@ -1,6 +1,6 @@
 "use client";
 import React, { FC } from "react";
-import { PostWithExtras } from "../interfaces/postSection.interface";
+import { PostWithExtras } from "../../interfaces/postSection.interface";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { MoreHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";

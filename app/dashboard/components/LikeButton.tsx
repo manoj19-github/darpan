@@ -1,6 +1,6 @@
 "use client";
 import React, { FC, useOptimistic } from "react";
-import { PostWithExtras } from "../interfaces/postSection.interface";
+import { PostWithExtras } from "../../interfaces/postSection.interface";
 import { Like } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Heart } from "lucide-react";

@@ -1,4 +1,4 @@
-import AppLogo from "@/app/components/AppLogo";
+import AppLogo from "@/components/AppLogo";
 import { satisfyFont } from "@/app/layout";
 import { Heart, Search } from "lucide-react";
 import Link from "next/link";

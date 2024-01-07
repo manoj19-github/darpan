@@ -30,7 +30,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { UploadButton } from "@/lib/uploadthing";
 import { createPostHandler } from "@/serverActions/createPost";
-import ApiLoader from "@/app/components/ApiLoader";
+import ApiLoader from "@/components/ApiLoader";
 interface CreatePageProps {}
 const CreatePage: FC<CreatePageProps> = (): JSX.Element => {
   const pathname = usePathname();

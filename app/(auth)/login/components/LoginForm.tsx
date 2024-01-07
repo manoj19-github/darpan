@@ -1,4 +1,4 @@
-import AppLogo from "@/app/components/AppLogo";
+import AppLogo from "@/components/AppLogo";
 import { satisfyFont } from "@/app/layout";
 import { Button } from "@/components/ui/button";
 import React, { FC } from "react";

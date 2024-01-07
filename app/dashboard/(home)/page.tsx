@@ -1,4 +1,4 @@
-import PostSection from "@/app/components/PostSection";
+import PostSection from "@/app/dashboard/components/PostSection";
 import React, { FC, Suspense } from "react";
 
 interface DashboardProps {}

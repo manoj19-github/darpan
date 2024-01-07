@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { PostWithExtras } from "../interfaces/postSection.interface";
-import { auth } from "../config/authConfig";
+import { PostWithExtras } from "../../interfaces/postSection.interface";
+import { auth } from "../../config/authConfig";
 import UserAvatar from "@/components/UserAvatar";
 import { LuDot } from "react-icons/lu";
 import TimeStamp from "./TimeStamp";
