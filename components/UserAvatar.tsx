@@ -15,10 +15,10 @@ const UserAvatar: FC<UserAvatarProps> = ({
 }): JSX.Element => {
   return (
     <Avatar
-      className={` h-12 w-12 ${isSmall ? `h-8 w-8` : ""}`}
+      className={` h-12 w-12  ${isSmall ? `h-8 w-8` : ""}`}
       {...avatarProps}
     >
-      <div className="!relative w-full h-full">
+      <div className="!relative w-full h-full ">
         <Image
           src={
             user?.image

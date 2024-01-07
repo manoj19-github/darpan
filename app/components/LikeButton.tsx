@@ -5,27 +5,30 @@ import { Like } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Heart } from "lucide-react";
 import ActionIcon from "./ActionIcon";
+import likePostAction from "@/serverActions/likePost";
 
 interface LikeButtonProps {
   post: PostWithExtras;
   userId?: string;
+  optimisticLikes: Like[];
+  setOptimisticLikes: any;
+  isAlreadyLiked: any;
 }
 
-const LikeButton: FC<LikeButtonProps> = ({ post, userId }): JSX.Element => {
-  const isAlreadyLiked = (like: Like) =>
-    like.userId === userId && like.postId && post.id;
-  const [optimisticLikes, setOptimisticLikes] = useOptimistic<Like[]>(
-    post.likes,
-    // @ts-ignore
-    (state: Like[], newLike: Like) =>
-      state.some(isAlreadyLiked)
-        ? state.filter((like) => like.userId !== userId)
-        : [...state, newLike]
-  );
+const LikeButton: FC<LikeButtonProps> = ({
+  post,
+  userId,
+  setOptimisticLikes,
+  optimisticLikes,
+  isAlreadyLiked,
+}): JSX.Element => {
   const handleLikePost = async (formData: FormData) => {
+    console.log("action hit");
     const postId = formData.get("postId");
     setOptimisticLikes({ postId, userId });
     // await likePost(postId);
+    const res = await likePostAction(postId);
+    console.log("res: ", res);
   };
   return (
     <div className="flex flex-col">

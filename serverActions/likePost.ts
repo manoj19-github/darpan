@@ -15,7 +15,7 @@ const likePostAction = async (value: FormDataEntryValue | null) => {
       };
     const { postId } = validatedFields.data;
 
-    const post = await prisma.like.findUnique({ where: { id: postId } });
+    const post = await prisma.post.findUnique({ where: { id: postId } });
     if (!post)
       return {
         message: "post not found",
@@ -30,6 +30,7 @@ const likePostAction = async (value: FormDataEntryValue | null) => {
     });
     //     update database
     if (likeExists) {
+      console.log("hit2");
       await prisma.like.delete({
         where: {
           postId_userId: {
@@ -43,6 +44,7 @@ const likePostAction = async (value: FormDataEntryValue | null) => {
         message: "unliked post",
       };
     } else {
+      console.log("hit");
       await prisma.like.create({
         data: {
           postId,
