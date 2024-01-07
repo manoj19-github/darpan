@@ -69,7 +69,7 @@ const Comments: FC<CommentsProps> = ({
             <Link href={`/dashboard/${self.user.username}`}>
               {self.user.username}
             </Link>
-            <p>{self.body}</p>
+            <p className="w-full truncate">{self.body}</p>
           </div>
         );
       })}
