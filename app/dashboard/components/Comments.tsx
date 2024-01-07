@@ -2,6 +2,7 @@
 import { CommentWithExtras } from "@/app/interfaces/postSection.interface";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { CreateComment } from "@/lib/formSchemas";
+import createCommentAction from "@/serverActions/createComment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "next-auth";
 import Link from "next/link";
@@ -44,7 +45,7 @@ const Comments: FC<CommentsProps> = ({
     startTransition(() => {
       setOptimisticComments(valuesCopy.body);
     });
-    // await createCommentAction(valuesCopy);
+    await createCommentAction(valuesCopy);
   };
   return (
     <div className="space-y-0.5 px-3 sm:px-0">
