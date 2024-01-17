@@ -23,7 +23,7 @@ const PostItem: FC<PostItemProps> = async ({
   const username = postDetails?.user.name;
   if (!session?.user) return <></>;
   return (
-    <div className="flex flex-col space-y-3 my-5 lg:my-8 relative">
+    <div className="flex flex-col space-y-3 my-10 lg:my-16 relative ">
       <div className="flex items-center  px-3 sm:px-0 justify-between">
         <div className="flex space-x-3 items-center">
           <UserAvatar user={postDetails.user} isSmall />

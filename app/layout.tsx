@@ -9,6 +9,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import PageLoading from "../components/PageLoading";
+import AuthProvider from "./providers/AuthProvider";
 
 //   different font family for our application
 export const robotoFont = Roboto({
@@ -51,9 +52,11 @@ const RootLayout: FC<RootLayoutProps> = ({ children }): JSX.Element => {
           enableSystem
           disableTransitionOnChange
         >
-          <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <PageLoading />
-          {children}
+          <AuthProvider>
+            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            <PageLoading />
+            {children}
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
