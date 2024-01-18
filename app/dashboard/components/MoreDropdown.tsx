@@ -50,6 +50,10 @@ const MoreDropdown: FC<MoreDropdownProps> = (): JSX.Element => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [dropdownRef]);
+  const logoutHandler = async () => {
+    await signOut();
+    window.location.reload();
+  };
   return (
     <DropdownMenu open={openMenu}>
       <DropdownMenuTrigger asChild>
@@ -96,7 +100,7 @@ const MoreDropdown: FC<MoreDropdownProps> = (): JSX.Element => {
               <p className="!cursor-pointer">Switch appearance</p>
             </DropdownMenuItem>
 
-            <DropdownMenuItem className="menuItem" onClick={() => signOut()}>
+            <DropdownMenuItem className="menuItem" onClick={logoutHandler}>
               <LogOut size={20} />
               <p>Log out</p>
             </DropdownMenuItem>

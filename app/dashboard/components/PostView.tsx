@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 "use client";
 import { PostWithExtras } from "@/app/interfaces/postSection.interface";
 import UserAvatar from "@/components/UserAvatar";
@@ -9,6 +10,11 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { FC, useRef } from "react";
+import MiniPost from "./MiniPost";
+import Comment from "./Comment";
+import ViewPost from "./ViewPost";
+import PostActions from "./PostActions";
+import CommentForm from "./CommentForm";
 
 interface PostViewProps {
   id: string;
@@ -26,14 +32,15 @@ const PostView: FC<PostViewProps> = ({ id, postDetails }): JSX.Element => {
   const href = `/dashboard/${username}`;
   const isMount = useMount();
   if (!isMount) return <></>;
+  console.log("postDetails.comments", postDetails.comments);
   return (
     <Dialog
       open={isPostModal}
       onOpenChange={(isOpen) => !isOpen && router.back()}
     >
       <DialogContent className="flex gap-0 flex-col md:flex-row items-center p-0 md:max-w-3xl lg:max-w-5xl xl:max-w-6xl h-full max-h-[500px] lg:max-h-[700px] xl:max-h-[800px] border">
-        <div className="flex flex-col justify-between md:h-full md:order-2 w-full max-w-md">
-          <DialogHeader className="flex border-b space-y-0 space-x-2.5 flex-row items-center py-4 pl-3.5 pr-6">
+        <div className="flex flex-col justify-between md:h-full md:order-2 w-full  max-w-md">
+          <DialogHeader className="flex border-b space-y-0 space-x-2.5 flex-row items-center py-4 pl-3.5 pr-6 max-w-md    w-full">
             <Link href={href}>
               <UserAvatar user={postDetails.user} />
             </Link>
@@ -41,7 +48,33 @@ const PostView: FC<PostViewProps> = ({ id, postDetails }): JSX.Element => {
               {username}
             </Link>
           </DialogHeader>
-          <ScrollArea className="hidden :md:inline border-b flex-1 py-1.5"></ScrollArea>
+          <ScrollArea className="hidden md:flex flex-col border-b flex-1 py-1.5   ">
+            <MiniPost post={postDetails} />
+            {postDetails.comments.length > 0 ? (
+              <>
+                {postDetails.comments.map((self, index) => (
+                  <Comment key={index} comment={self} inputRef={inputRef} />
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
+          </ScrollArea>
+          <ViewPost className="hidden md:flex  border-b" />
+          <div className="px-2 hidden md:block mt-auto border-b p-2.5 ">
+            <PostActions post={postDetails} userId={user?.id} />
+            <time className="text-[11px] uppercase text-zinc-500 font-medium">
+              {new Date(postDetails.createdAt).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </div>
+          <CommentForm
+            postId={id}
+            className="hidden md:inline-flex"
+            inputRef={inputRef}
+          />
         </div>
       </DialogContent>
     </Dialog>
