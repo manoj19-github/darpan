@@ -30,7 +30,7 @@ const CommentForm: FC<CommentFormProps> = ({
   });
   const watchFormBody = formController.watch("body");
   const isFormSubmitting = formController.formState.isSubmitting;
-  const onSubmitAction = async (values) => {
+  const onSubmitAction = async (values: any) => {
     await createCommentAction(values);
     formController.reset();
   };
