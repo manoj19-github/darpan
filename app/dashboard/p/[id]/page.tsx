@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import SinglePostSkeleton from "@/components/SinglePostSkeleton";
+import React, { FC, Suspense } from "react";
+import SinglePost from "../../components/SinglePost";
 interface IParams {
   id: string;
 }
@@ -7,7 +9,13 @@ interface PostPageProps {
 }
 
 const PostPage: FC<PostPageProps> = ({ params }): JSX.Element => {
-  return <div>PostPage</div>;
+  return (
+    <div>
+      <Suspense fallback={<SinglePostSkeleton />}>
+        <SinglePost />
+      </Suspense>
+    </div>
+  );
 };
 
 export default PostPage;

@@ -1,5 +1,5 @@
 import AppLogo from "@/components/AppLogo";
-import { satisfyFont } from "@/app/layout";
+// import { satisfyFont } from "@/app/layout";
 import { Button } from "@/components/ui/button";
 import React, { FC } from "react";
 
@@ -11,7 +11,7 @@ const LoginForm: FC<LoginFormProps> = (): JSX.Element => {
   return (
     <div className="flex flex-col items-center ">
       <p
-        className={`font-semibold   text-[40px] lg:text-[70px] lg:mt-[20vh] mt-[10vh] ${satisfyFont.className}`}
+        className={`font-semibold   text-[40px] lg:text-[70px] lg:mt-[20vh] mt-[10vh] font-Satisfy`}
       >
         Darpan
       </p>

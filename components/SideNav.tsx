@@ -5,6 +5,7 @@ import MoreDropdown from "../app/dashboard/components/MoreDropdown";
 import { auth } from "../app/config/authConfig";
 import ProfileLinks from "../app/dashboard/components/ProfileLinks";
 
+
 interface SideNavProps {}
 const SideNav: FC<SideNavProps> = async (): Promise<JSX.Element> => {
   const session = await auth();

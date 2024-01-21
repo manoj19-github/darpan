@@ -15,6 +15,7 @@ import Comment from "./Comment";
 import ViewPost from "./ViewPost";
 import PostActions from "./PostActions";
 import CommentForm from "./CommentForm";
+import Image from "next/image";
 
 interface PostViewProps {
   id: string;
@@ -38,7 +39,7 @@ const PostView: FC<PostViewProps> = ({ id, postDetails }): JSX.Element => {
       open={isPostModal}
       onOpenChange={(isOpen) => !isOpen && router.back()}
     >
-      <DialogContent className="flex gap-0 flex-col md:flex-row items-center p-0 md:max-w-3xl lg:max-w-5xl xl:max-w-6xl h-full max-h-[500px] lg:max-h-[700px] xl:max-h-[800px] border">
+      <DialogContent className="flex gap-0 flex-col md:flex-row  p-0 md:max-w-3xl lg:max-w-5xl xl:max-w-6xl h-full max-h-[500px] lg:max-h-[700px]  border ">
         <div className="flex flex-col justify-between md:h-full md:order-2 w-full  max-w-md">
           <DialogHeader className="flex border-b space-y-0 space-x-2.5 flex-row items-center py-4 pl-3.5 pr-6 max-w-md    w-full">
             <Link href={href}>
@@ -76,6 +77,22 @@ const PostView: FC<PostViewProps> = ({ id, postDetails }): JSX.Element => {
             inputRef={inputRef}
           />
         </div>
+        <div className="relative overflow-hidden h-full lg:h-full max-w-3xl w-full    ">
+          <Image
+            src={postDetails.fileUrl}
+            fill
+            alt="post image"
+            objectFit="fill"
+            className="md:rounded-l-md object-fill "
+          />
+        </div>
+        <PostActions
+          post={postDetails}
+          userId={user?.id}
+          className="md:hidden border-b p-2.5"
+        />
+        <CommentForm postId={id} className="md:hidden" inputRef={inputRef} />
+        <ViewPost className="md:hidden" />
       </DialogContent>
     </Dialog>
   );

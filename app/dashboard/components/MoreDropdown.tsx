@@ -52,7 +52,6 @@ const MoreDropdown: FC<MoreDropdownProps> = (): JSX.Element => {
   }, [dropdownRef]);
   const logoutHandler = async () => {
     await signOut();
-    window.location.reload();
   };
   return (
     <DropdownMenu open={openMenu}>

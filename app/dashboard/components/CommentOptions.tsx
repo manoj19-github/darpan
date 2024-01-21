@@ -12,7 +12,7 @@ interface CommentOptionsProps {
 }
 
 const CommentOptions: FC<CommentOptionsProps> = ({ comment }): JSX.Element => {
-  const commentHandler = async (formData) => {
+  const commentHandler = async (formData: any) => {
     const { message } = await deleteCommentAction(formData);
     toast.success(message);
   };

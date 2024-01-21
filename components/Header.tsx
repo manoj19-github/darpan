@@ -1,5 +1,5 @@
 import AppLogo from "@/components/AppLogo";
-import { satisfyFont } from "@/app/layout";
+// import { satisfyFont } from "@/app/layout";
 import { Heart, Search } from "lucide-react";
 import Link from "next/link";
 import React, { FC } from "react";
@@ -11,7 +11,7 @@ const Header: FC<HeaderProps> = (): JSX.Element => {
     <header className="fixed  md:hidden bg-white top-0 flex items-center justify-between dark:bg-neutral-950 w-full z-50 border-b border-zinc-300 dark:border-neutral-700 px-3 py-2 sm:-ml-5">
       <Link href="/dashboard">
         <p
-          className={`font-semibold   text-[30px] mt-2 ${satisfyFont.className}`}
+          className={`font-semibold font-Satisfy   text-[30px] mt-2`}
         >
           Darpan
         </p>

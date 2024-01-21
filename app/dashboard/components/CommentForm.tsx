@@ -1,5 +1,5 @@
 "use client";
-import { Form } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import useMount from "@/hooks/useMount";
 import { CreateComment } from "@/lib/formSchemas";
 import { cn } from "@/lib/utils";
@@ -52,6 +52,35 @@ const CommentForm: FC<CommentFormProps> = ({
         ) : (
           <></>
         )}
+        <FormField
+          control={formController.control}
+          name="body"
+          render={({ field }) => {
+            return (
+              <FormItem className="w-full flex">
+                <FormControl>
+                  <input
+                    disabled={formController.formState.isSubmitting}
+                    type="text"
+                    placeholder="Add a comment..."
+                    className="bg-transparent text-sm border-none focus:outline-none flex-1 dark:text-neutral-400 placeholder-neutral-400 font-medium disabled:opacity-30"
+                    {...field}
+                  />
+                </FormControl>
+              </FormItem>
+            );
+          }}
+        />
+        <button
+          disabled={
+            !watchFormBody.trim().length ||
+            formController.formState.isSubmitting
+          }
+          type="submit"
+          className="text-sky-500 text-sm font-semibold  hover:text-sky-700 dark:hover:text-white disabled:cursor-not-allowed dark:disabled:text-slate-500 disabled:text-sky-500/40 disabled:hover:text-sky-500/40 dark:disabled:hover:text-slate-500"
+        >
+          Post
+        </button>
       </form>
     </Form>
   );

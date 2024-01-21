@@ -1,7 +1,7 @@
 "use client";
 
 import AppLogo from "@/components/AppLogo";
-import { satisfyFont } from "@/app/layout";
+// import { satisfyFont } from "@/app/layout";
 import { Button } from "@/components/ui/button";
 import React, { FC, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";

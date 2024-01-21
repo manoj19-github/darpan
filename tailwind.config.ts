@@ -1,14 +1,9 @@
+import { Satisfy } from "next/font/google";
 /** @type {import('tailwindcss').Config} */
-
 
 module.exports = {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./components/**/*.{ts,tsx,js,jsx}", "./app/**/*.{ts,tsx,js,jsx}"],
   theme: {
     container: {
       center: true,
@@ -18,6 +13,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        Satisfy: "Satisfy, cursive",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
