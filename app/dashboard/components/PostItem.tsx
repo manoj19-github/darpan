@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import PostActions from "./PostActions";
 import Comments from "./Comments";
+import PostActionWrapper from "./PostActionWrapper";
 
 interface PostItemProps {
   postDetails: PostWithExtras;
@@ -54,23 +55,10 @@ const PostItem: FC<PostItemProps> = async ({
           className="sm:rounded-md object-cover"
         />
       </Card>
-
-      <PostActions
-        post={postDetails}
+      <PostActionWrapper
+        postDetails={postDetails}
         userId={userId}
-        className="px-3 sm:px-0"
-      />
-      {postDetails.caption ? (
-        <div className="text-sm leading-none items-center space-x-2 font-medium px-3 sm:px-0">
-          <p>{postDetails.caption}</p>
-        </div>
-      ) : (
-        <></>
-      )}
-      <Comments
-        postId={postDetails.id}
-        comments={postDetails.comments}
-        user={session?.user}
+        session={session}
       />
     </div>
   );
